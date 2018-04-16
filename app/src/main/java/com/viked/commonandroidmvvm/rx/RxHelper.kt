@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RxHelper @Inject constructor() : Consumer<Throwable> {
-    override fun accept(t: Throwable?) {
+    override fun accept(t: Throwable) {
         if (t is UndeliverableException) {
             Timber.e(t.cause)
         } else {
