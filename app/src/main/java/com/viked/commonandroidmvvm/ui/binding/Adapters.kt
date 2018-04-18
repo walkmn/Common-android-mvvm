@@ -14,6 +14,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.viked.commonandroidmvvm.text.TextWrapper
 import com.viked.commonandroidmvvm.ui.adapters.list.ItemWrapper
 import com.viked.commonandroidmvvm.ui.common.HideKeyoardClickListener
@@ -96,7 +97,7 @@ fun setSelected(editText: EditText, editable: Boolean?) {
 
 @BindingAdapter("imageUrl")
 fun setImageView(imageView: ImageView, url: String) {
-    // Glide.with(imageView).load(url).into(imageView)
+    Glide.with(imageView).load(url).into(imageView)
 }
 
 @BindingAdapter("android:src")
