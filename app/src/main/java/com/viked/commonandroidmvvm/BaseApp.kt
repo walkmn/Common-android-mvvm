@@ -31,6 +31,8 @@ abstract class BaseApp : Application(), HasActivityInjector {
 
     abstract fun inject()
 
+    abstract fun isDebug() : Boolean
+
     override fun activityInjector(): DispatchingAndroidInjector<Activity> {
         return dispatchingAndroidInjector
     }
@@ -46,13 +48,13 @@ abstract class BaseApp : Application(), HasActivityInjector {
     }
 
     private fun initFabric() {
-        if (!BuildConfig.DEBUG) {
+        if (!isDebug()) {
             analytic.init()
         }
     }
 
     private fun initLogger() {
-        if (!BuildConfig.DEBUG) {
+        if (!isDebug()) {
             Timber.plant(NotLoggingTree())
         } else {
             Timber.plant(Timber.DebugTree())
