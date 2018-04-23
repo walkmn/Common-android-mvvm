@@ -21,18 +21,18 @@ abstract class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
 
-    lateinit var mProgressDelegate: ProgressDelegate
+    var progressDelegate: ProgressDelegate? = null
 
-    lateinit var errorDelegate: ErrorDelegate
+    var errorDelegate: ErrorDelegate? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mProgressDelegate = getProgressDelegate()
-        errorDelegate = getErrorDelegate()
+        progressDelegate = initProgressDelegate()
+        errorDelegate = initErrorDelegate()
     }
 
-    protected fun getProgressDelegate() : ProgressDelegate  = DialogProgressDelegate(this)
-    protected fun getErrorDelegate() : DialogErrorDelegate  = DialogErrorDelegate(this)
+    protected fun initProgressDelegate() : ProgressDelegate  = DialogProgressDelegate(this)
+    protected fun initErrorDelegate() : DialogErrorDelegate  = DialogErrorDelegate(this)
 
     override fun supportFragmentInjector(): DispatchingAndroidInjector<Fragment> =
             dispatchingAndroidInjector
